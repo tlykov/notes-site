@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" id="add_form">
+    <h2>New Note</h2>
+    <label id="title_label">Title:</label> <br>
+    <input id="title_input" type="text" formControlName="title">
+
+    <textarea id="text_input" type="text" formControlName="text" rows="10"></textarea>
+
+    <div id="cb_div">
+        <label id="cb_label">Important:</label>
+        <input id="tag_cb" type="checkbox" formControlName="tag">
+    </div>
+
+    <div id="btn_div">
+        <button type="button" (click)="onCancel()" id="can_btn">Cancel</button>
+        <button type="submit" [disabled]="!form.valid" id="sub_btn">Save</button>
+    </div>
+</form>

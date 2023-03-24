@@ -1,0 +1,13 @@
+<ul id="note_list">
+    <h2>Notes:</h2>
+    <li *ngFor="let n of notes" class="note_li {{n.tag}}" (click)="onNoteView(n.title)">
+        {{ n.title }}
+        <img (click)="delete(n)" src="../assets/delete_icon.png" width="24px" height="24px" class="del_btn">
+    </li>
+    <button (click)="onAddBtn()" [disabled]="lock_btns">New Note</button>
+</ul>
+
+
+<app-add-note (add)="onAddedNote($event)" (cancel)="onCancelAdd()" id="form_comp"></app-add-note>
+
+<app-note-view *ngFor="let n of notes" [note]="n" (delete)="delete(n)" (close)="onNoteViewClose(n.title)" id="info_{{n.title}}"></app-note-view>

@@ -1,0 +1,95 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+form * {
+    flex: 1;
+}
+
+#text_input {
+    height: 100px;
+}
+
+h2 {
+    color: #f4f4f4;
+    margin: 8px 9%;
+}
+
+#title_label {
+    margin: 8px 9% 0px 9%;
+}
+
+#title_input, textarea {
+    background-color: transparent;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    margin: 8px 9%;
+    width: 80%;
+    color: #d6d6d6;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#title_input {
+    margin-top: 0px;
+}
+
+button {
+    font-family: 'Courier New', Courier, monospace;
+    border: none;
+    background-color: transparent;
+    box-shadow: #b9b9b9 0px 0px 0px 1px;
+    cursor: pointer;
+    color: #d6d6d6;
+    border-radius: 14px;
+    padding: 0px;
+    width: 80px;
+    height: 30px;
+    transition: all 0.2s ease;
+    margin: 10px;
+    font-size: 0.85em;
+}
+
+button:hover {
+    box-shadow: #dedede 0px 0px 0px 1px;
+    font-size: 0.9em;
+}
+
+button:disabled {
+    cursor: default;
+    color: #8e8e8e;
+    box-shadow: #8e8e8e 0px 0px 0px 1px;
+    font-size: 0.85em;
+}
+
+#btn_div {
+    margin: 0px calc(50% - 100px);
+    width: 100%;
+}
+
+#cb_div {
+    margin: 6px 9%;
+}
+
+#tag_cb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin: 0px 10px;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+    position: relative;
+    bottom: -4px;
+    background-color: #232323;
+}
+
+#tag_cb:hover {
+    cursor: pointer;
+}
+
+#tag_cb:checked {
+    box-shadow: inset 0px 0px 0px 3.5px #232323;
+    background-color: #d8b065;
+}
