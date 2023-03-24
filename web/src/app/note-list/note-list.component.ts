@@ -79,6 +79,9 @@ export class NoteListComponent {
     var form = document.getElementById("form_comp") as HTMLElement;
     form.style.display = "initial";
 
+    var bg = document.getElementById("close_background") as HTMLElement;
+    bg.style.display = "initial";
+
     this.toggleLock();
   }
 
@@ -91,6 +94,9 @@ export class NoteListComponent {
     var div = document.getElementById(id) as HTMLElement;
     div.style.display = "initial";
 
+    var bg = document.getElementById("close_background") as HTMLElement;
+    bg.style.display = "initial";
+
     this.toggleLock();
   }
 
@@ -102,6 +108,9 @@ export class NoteListComponent {
     var div = document.getElementById(id) as HTMLElement;
     div.style.display = "none";
 
+    var bg = document.getElementById("close_background") as HTMLElement;
+    bg.style.display = "none";
+
     this.toggleLock();
   }
 
@@ -112,6 +121,9 @@ export class NoteListComponent {
 
     var form = document.getElementById("form_comp") as HTMLElement;
     form.style.display = "none";
+
+    var bg = document.getElementById("close_background") as HTMLElement;
+    bg.style.display = "none";
     this.toggleLock();
   }
 
@@ -121,6 +133,28 @@ export class NoteListComponent {
 
     var form = document.getElementById("form_comp") as HTMLElement;
     form.style.display = "none";
+
+    var bg = document.getElementById("close_background") as HTMLElement;
+    bg.style.display = "none";
+    this.toggleLock();
+  }
+
+  closeFromBG() {
+    var ul = document.getElementById("note_list") as HTMLUListElement;
+    ul.style.filter = "none";
+
+    var form = document.getElementById("form_comp") as HTMLElement;
+    form.style.display = "none";
+
+    var bg = document.getElementById("close_background") as HTMLElement;
+    bg.style.display = "none";
+
+    for(let note of this.notes) {
+      var id = "info_" + note.title;
+      var div = document.getElementById(id) as HTMLElement;
+      div.style.display = "none";
+    }
+    
     this.toggleLock();
   }
 
