@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class NoteListComponent {
   notes: Note[] = [];
   lock_btns = false;
+  alert = "";
 
   constructor(private http: HttpClient) {
     this.fetchStorage();
@@ -18,27 +19,35 @@ export class NoteListComponent {
 
 
   fetchStorage():void {
-    if("notes" in localStorage) {
-        let notes_obj = JSON.parse(localStorage['notes']);
-        for(let note of notes_obj) {
-            this.notes.push(note);
-        }
-        this.sortNotes();
-    }
 
-    this.http.get('/find',{observe: 'body', responseType:'json'}).subscribe((res)=>{
-      console.log(Object.values(res));
-      Object.values(res).forEach(el => {
-        this.notes.push(el);
+    this.http.get('/notes',{observe: 'body', responseType: 'json'}).subscribe((res)=>{
+      var dbNotes = Object.values(res);
+
+      dbNotes.forEach(note => {
+        this.notes.push(note);
       });
+      this.sortNotes();
     });
-    
+
   }
 
   add(new_note: Note):void {
     this.notes.push(new_note);
     this.sortNotes();
-    localStorage['notes'] = JSON.stringify(this.notes);
+    
+    this.http.post('/notes',new_note,{observe: 'response', responseType: 'text'}).subscribe((res)=>{
+      if(res.status == 200) {
+        this.alert = "Note added"
+        console.log("Note added: "+new_note.title);
+      } else {
+        this.alert = "Error: Note not added"
+        console.log("Error: Note not added => status "+res.status.toString());
+      }
+      
+      setTimeout(()=>{
+        this.alert = "";
+      },2500);
+    });
   }
 
   delete(to_delete: Note):void {
@@ -47,7 +56,20 @@ export class NoteListComponent {
       if(note == to_delete) this.notes.splice(i,1);
       return;
     });
-    localStorage['notes'] = JSON.stringify(this.notes);
+    
+    this.http.delete('/notes/'+to_delete.title,{observe: 'response', responseType: 'text'}).subscribe((res)=>{
+      if(res.status == 200) {
+        this.alert = "Note deleted"
+        console.log("Note deleted: "+to_delete.title);
+      } else {
+        this.alert = "Error: Note not deleted"
+        console.log("Error: Note not deleted => status "+res.status.toString());
+      }
+      
+      setTimeout(()=>{
+        this.alert = "";
+      },2500);
+    });
   }
 
   onAddBtn():void {
@@ -84,7 +106,6 @@ export class NoteListComponent {
   }
 
   onAddedNote(new_note: Note):void {
-    console.log(new_note);
     this.add(new_note);
     var ul = document.getElementById("note_list") as HTMLUListElement;
     ul.style.filter = "none";

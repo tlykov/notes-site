@@ -79,3 +79,11 @@ app-add-note, app-note-view {
 .Important {
     color: #d8b065;
 }
+
+#alert {
+    position: relative;
+    right: calc(-19% + 44px);
+    margin: 0;
+    margin-top: 10px;
+    padding: 14px 44px;
+}

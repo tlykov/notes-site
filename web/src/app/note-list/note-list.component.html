@@ -7,6 +7,8 @@
     <button (click)="onAddBtn()" [disabled]="lock_btns">New Note</button>
 </ul>
 
+<p id="alert">{{alert}}</p>
+
 
 <app-add-note (add)="onAddedNote($event)" (cancel)="onCancelAdd()" id="form_comp"></app-add-note>
 
