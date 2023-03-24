@@ -2,6 +2,7 @@
     <h2 class="{{note.tag}}" id="title">{{note.title}}</h2>
     <p id="tag">Tag: {{note.tag}}</p>
     <p id="text">{{note.text}}</p>
+    <p id="date">{{note.last_modified | date:'medium'}}</p>
 
     <div id="btn_div">
         <button (click)="onDelete()" id="del_btn">Delete</button>

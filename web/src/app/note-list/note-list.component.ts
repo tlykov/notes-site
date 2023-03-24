@@ -27,7 +27,10 @@ export class NoteListComponent {
     }
 
     this.http.get('/find',{observe: 'body', responseType:'json'}).subscribe((res)=>{
-      console.log(res);
+      console.log(Object.values(res));
+      Object.values(res).forEach(el => {
+        this.notes.push(el);
+      });
     });
     
   }

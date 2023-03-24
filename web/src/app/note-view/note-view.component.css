@@ -38,7 +38,7 @@ button:hover {
     width: 100%;
 }
 
-#tag {
+#tag, #date {
     width: 80%;
     margin: 8px 9%;
 }

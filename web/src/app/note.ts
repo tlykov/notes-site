@@ -4,4 +4,5 @@ export interface Note {
     title: string;
     text: string;
     tag: Tag;
+    last_modified: Date;
 }

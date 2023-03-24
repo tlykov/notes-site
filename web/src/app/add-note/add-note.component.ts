@@ -25,7 +25,8 @@ export class AddNoteComponent {
     var new_note: Note = {
       title: values.title,
       text: values.text,
-      tag: tag_val
+      tag: tag_val,
+      last_modified: new Date()
     }
     this.form.reset();
     this.add.emit(new_note);
