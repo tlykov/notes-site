@@ -64,7 +64,7 @@ app-add-note, app-note-view {
     position: absolute;
     top: 0;
     width: 40%;
-    height: 400px;
+    height: 390px;
     min-width: 200px;
     left: calc(29% - 44px);
     margin: 0;

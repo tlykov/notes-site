@@ -10,7 +10,15 @@ form * {
 }
 
 #text_input {
-    height: 100px;
+    height: 120px;
+    resize: none;
+}
+
+#text_input:focus {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 0px #d6d6d6; 
 }
 
 h2 {
@@ -24,8 +32,10 @@ h2 {
 
 #title_input, textarea {
     background-color: transparent;
-    border: 1px solid #d6d6d6;
+    outline: none;
+    border: none;
     border-radius: 4px;
+    box-shadow: 0 0 2px 0px #d6d6d6; 
     margin: 8px 9%;
     width: 80%;
     color: #d6d6d6;
@@ -34,6 +44,13 @@ h2 {
 
 #title_input {
     margin-top: 0px;
+}
+
+#title_input:focus {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 2px 0px #d6d6d6; 
 }
 
 button {

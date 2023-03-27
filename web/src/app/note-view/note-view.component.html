@@ -1,11 +1,22 @@
 <div id="info_view">
-    <h2 class="{{note.tag}}" id="title">{{note.title}}</h2>
-    <p id="tag">Tag: {{note.tag}}</p>
-    <p id="text">{{note.text}}</p>
+    <input class="{{note.tag}}" id="title" value="{{note.title}}" [disabled]="disableFlag">
+    <img (click)="onEdit()" src="../assets/edit_icon.png" width="28px" height="28px" id="edit_btn">
+    
+    <p id="tag" [ngClass]="viewClass">Tag: {{note.tag}}</p>
+    <div id="tag_div" [ngClass]="editClass">
+        <label id="label" [ngClass]="editClass">Important:</label>
+        <input id="cb" type="checkbox" name="important" value="true" [ngClass]="editClass">
+    </div>
+    <textarea id="text" value="{{note.text}}" [disabled]="disableFlag"></textarea>
     <p id="date">{{note.last_modified | date:'medium'}}</p>
 
-    <div id="btn_div">
-        <button (click)="onDelete()" id="del_btn">Delete</button>
-        <button (click)="onClose()" id="clo_btn">Close</button>
+    <div id="btn_div" [ngClass]="viewClass">
+        <button (click)="onDelete()" id="del_btn" [ngClass]="viewClass">Delete</button>
+        <button (click)="onClose()" id="clo_btn" [ngClass]="viewClass">Close</button>
+    </div>
+
+    <div id="btn_div_edit" [ngClass]="editClass">
+        <button (click)="onEditCancel()" id="can_btn" [ngClass]="editClass">Cancel</button>
+        <button (click)="onEditSave()" id="sav_btn" [ngClass]="editClass">Save</button>
     </div>
 </div>

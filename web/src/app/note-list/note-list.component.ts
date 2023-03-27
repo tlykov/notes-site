@@ -29,6 +29,16 @@ export class NoteListComponent {
       this.sortNotes();
     });
 
+    /*
+    var n: Note = {
+      title: "test",
+      text: "test",
+      tag: Tag.None,
+      last_modified: new Date()
+    };
+    this.notes.push(n);
+    */
+
   }
 
   add(new_note: Note):void {
@@ -64,6 +74,22 @@ export class NoteListComponent {
       } else {
         this.alert = "Error: Note not deleted"
         console.log("Error: Note not deleted => status "+res.status.toString());
+      }
+      
+      setTimeout(()=>{
+        this.alert = "";
+      },2500);
+    });
+  }
+
+  onEdit(event: any) {
+    this.http.put('/notes',{old: event.old, new: event.new },{observe: 'response', responseType: 'text'}).subscribe((res)=>{
+      if(res.status == 200) {
+        this.alert = "Note modified"
+        console.log("Note modified: "+event.old.title);
+      } else {
+        this.alert = "Error: Note not modified"
+        console.log("Error: Note not modified => status "+res.status.toString());
       }
       
       setTimeout(()=>{

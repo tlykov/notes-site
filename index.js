@@ -23,7 +23,7 @@ app.get('/notes', async(req, res)=>{
 });
 
 app.put('/notes', async(req,res)=>{
-    var success = await db.update(req.body);
+    var success = await db.update(req.body.old, req.body.new);
     if(success) {
         res.sendStatus(200);
     } else {

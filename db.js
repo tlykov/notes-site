@@ -50,13 +50,9 @@ const addNote = async(note) => {
     return true;
 };
 
-const update = async(note) => {
-    var res = await Note.updateOne(
-        {title: note.title},
-        {text: note.text},
-        {tag: note.tag},
-        {last_modified: note.last_modified}
-    ).catch((err)=>{
+const update = async(prev_note, new_note) => {
+    var res = await Note.updateOne(prev_note, new_note)
+    .catch((err)=>{
         console.log(err);
         return false;
     });
