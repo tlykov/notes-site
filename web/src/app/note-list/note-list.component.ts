@@ -12,6 +12,7 @@ export class NoteListComponent {
   notes: Note[] = [];
   lock_btns = false;
   alert = "";
+  max_id = 0;
 
   constructor(private http: HttpClient) {
     this.fetchStorage();
@@ -24,6 +25,9 @@ export class NoteListComponent {
       var dbNotes = Object.values(res);
 
       dbNotes.forEach(note => {
+        if(note._id >= this.max_id) {
+          this.max_id = note._id + 1;
+        }
         this.notes.push(note);
       });
       this.sortNotes();

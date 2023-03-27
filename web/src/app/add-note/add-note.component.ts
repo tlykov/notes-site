@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Note, Tag } from 'src/app/note';
 
@@ -8,6 +8,7 @@ import { Note, Tag } from 'src/app/note';
   styleUrls: ['./add-note.component.css']
 })
 export class AddNoteComponent {
+  @Input() id_count: number = 0;
   @Output() add = new EventEmitter();
   @Output() cancel = new EventEmitter();
   form: FormGroup;
@@ -23,6 +24,7 @@ export class AddNoteComponent {
   onSubmit(values: any):void {
     var tag_val = (values.tag == true) ? Tag.Important : Tag.None;
     var new_note: Note = {
+      _id: this.id_count++,
       title: values.title,
       text: values.text,
       tag: tag_val,

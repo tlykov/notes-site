@@ -10,6 +10,6 @@
 <p id="alert">{{alert}}</p>
 
 <div id="close_background" (click)="closeFromBG()"></div>
-<app-add-note (add)="onAddedNote($event)" (cancel)="onCancelAdd()" id="form_comp"></app-add-note>
+<app-add-note (add)="onAddedNote($event)" (cancel)="onCancelAdd()" [id_count]="max_id" id="form_comp"></app-add-note>
 
 <app-note-view *ngFor="let n of notes" [note]="n" (delete)="delete(n)" (close)="onNoteViewClose(n.title)" (update)="onEdit($event)" id="info_{{n.title}}"></app-note-view>

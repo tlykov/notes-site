@@ -29,7 +29,7 @@ export class NoteViewComponent {
 
   onEdit():void {
     //this.show();
-    
+
     this.toggleViewEdit();
   }
 
@@ -38,10 +38,10 @@ export class NoteViewComponent {
     
     this.toggleViewEdit();
     
-    var title = document.getElementById("title") as HTMLInputElement;
+    var title = document.getElementById("title_"+this.note._id) as HTMLInputElement;
     title.value = this.note.title;
 
-    var text = document.getElementById("text") as HTMLTextAreaElement;
+    var text = document.getElementById("text_"+this.note._id) as HTMLTextAreaElement;
     text.value = this.note.text;
   }
 
@@ -50,15 +50,16 @@ export class NoteViewComponent {
     
     this.toggleViewEdit();
     this.initialNote = {
+      _id: this.note._id,
       title: this.note.title,
       text: this.note.text,
       tag: this.note.tag,
       last_modified: this.note.last_modified
     };
 
-    var title = document.getElementById("title") as HTMLInputElement;
-    var text = document.getElementById("text") as HTMLTextAreaElement;
-    var tag = document.getElementById("cb") as HTMLInputElement;
+    var title = document.getElementById("title_"+this.note._id) as HTMLInputElement;
+    var text = document.getElementById("text_"+this.note._id) as HTMLTextAreaElement;
+    var tag = document.getElementById("cb_"+this.note._id) as HTMLInputElement;
     if(this.isDifferent(title.value,text.value,tag.checked)) {
       this.note.title = title.value;
       this.note.text = text.value;
@@ -83,7 +84,7 @@ export class NoteViewComponent {
       this.editClass = "show";
       this.viewClass = "hide";
       if(this.note.tag == Tag.Important) {
-        var cb = document.getElementById("cb") as HTMLInputElement;
+        var cb = document.getElementById("cb_"+this.note._id) as HTMLInputElement;
         cb.checked = true;
       }
     } else {
