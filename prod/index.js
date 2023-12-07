@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const db = require('./db');
 
-var port = 8080;
+var port = 3000;
     
 var options = {
     index: 'index.html',
@@ -19,6 +19,7 @@ app.use('/', function(req,res,next){
     
 app.get('/notes', async(req, res)=>{
     var result = await db.getAll();
+    if(result == null) res.json({});
     res.json(result);
 });
 
@@ -50,8 +51,10 @@ app.post('/notes', async(req,res)=>{
     }
 });
 
-app.use('/', express.static(__dirname + '/web/dist/asn3', options));
+app.use('/', express.static(__dirname + '/dist', options));
 
-app.listen(port, function(){
-    console.log(`app running on port ${port}`);
+db.connect().then(()=>{
+    app.listen(port, function(){
+        console.log(`app running on port ${port}`);
+    });
 });

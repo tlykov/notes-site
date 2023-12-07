@@ -1,10 +1,20 @@
 var mongoose = require('mongoose');
 
-const uri = "mongodb+srv://tlykov:root23@cluster372.g5gslr3.mongodb.net/cmpt372?retryWrites=true&w=majority";
-mongoose.connect(uri);
-
-var db = mongoose.connection;
-db.on("error", console.error.bind(console,"connection error"));
+const connect = async () => {
+	try { 
+	    const options = {
+	        useNewUrlParser: true,
+	    };
+	
+	    const connection = await mongoose.connect('mongodb://mongo:27017/', options);
+	    if (connection) {
+	        console.log("Database Connected");
+        }
+	} catch (err) {
+	    console.log("Error while connecting database:");
+	    console.log(err);
+	}
+};
 
 var Schema = mongoose.Schema;
 var noteSchema = new Schema({
@@ -70,4 +80,4 @@ const remove = async(title) => {
     return true;
 };
 
-module.exports = { getAll, addNote, update, remove };
+module.exports = { getAll, addNote, update, remove, connect };
